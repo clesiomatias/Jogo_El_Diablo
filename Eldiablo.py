@@ -23,34 +23,35 @@ background_label.place(x=0, y=20, height=600, width=800)
 
 label_text_head = ttk.Label(
 	janela, 
-	text='Pressione Enter e faça suas perguntas...\n            Se puder!',
+	text='Faça suas perguntas... Se puder!',
 	font = 'Buffied 40 normal',
 	)
-label_text_head.place(x=50,y=-10)
+label_text_head.place(x=150,y=-10)
 
 with open ('elogios.txt','r', encoding='utf-8') as elogios:
 	elogio = choice(elogios.readlines())
 	print(elogio)
-
-def perta():
-	keyb = Controller()
-	def press(key):
-		print(key)
-	def release(key):
-		pass
-	with Listener(on_press = press, on_release=release)as listener:
-		listener.join()
-		if listener == ';':
-			pergunta['state']= 'enable'
-hot = Entry(janela, width=0,command=perta())
+hot = Entry(janela, width=0)
 hot.pack()
-hot.place(x=-10,y=-10)
+hot.place(x=-20,y=-100)
 hot.focus()
+x = hot.get()
+print(x)
+
 
 
 pergunta = Entry(janela,width=100,fg= 'red',justify ='center',state = 'disable')
 pergunta.pack()
 pergunta.place(x=100,y=120)
+
+def avalia(x):
+	print (x)
+	
+		
+b_perg = Button(janela, text='Quero Perguntar', command=avalia(x))
+b_perg.pack()
+b_perg.place(x=350, y=80)
+
 
 
 janela.mainloop()
